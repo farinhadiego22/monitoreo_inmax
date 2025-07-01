@@ -8,10 +8,6 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
-    # Si quieres seguridad, descomenta las siguientes líneas y configura usuario/contraseña
-    # environment:
-    #   - MONGO_INITDB_ROOT_USERNAME=admin
-    #   - MONGO_INITDB_ROOT_PASSWORD=adminpass
 
   keycloak:
     image: quay.io/keycloak/keycloak:24.0.4
@@ -23,13 +19,12 @@ services:
       KC_DB: dev-file
     ports:
       - "8080:8080"
-    # En producción, usar una base de datos real como PostgreSQL
 
   backend:
     build: ./backend
     container_name: backend
     volumes:
-      - ./backend:/app
+      - ./backend/app:/app/app
     env_file:
       - ./backend/.env
     ports:
