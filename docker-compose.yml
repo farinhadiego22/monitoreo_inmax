@@ -41,6 +41,9 @@ services:
     depends_on:
       - backend
       - keycloak
+    volumes:
+      - ./frontend:/app
+
 
 volumes:
   mongo_data:

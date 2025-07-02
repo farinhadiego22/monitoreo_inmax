@@ -5,12 +5,37 @@ from app.schemas.user import UserLogin, UserCreate
 from app.utils.security import verify_password, create_access_token, hash_password
 from app.db.mongo import db
 from datetime import timedelta
-
+from fastapi.security import OAuth2PasswordRequestForm
 
 router = APIRouter(prefix="/auth", tags=["Auth"])
 
+# Login para Swagger/OpenAPI (usa form-data)
 @router.post("/login")
-def login(user: UserLogin):
+def login_form(form_data: OAuth2PasswordRequestForm = Depends()):
+    user_data = db["users"].find_one({"email": form_data.username})
+
+    if not user_data:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Usuario no encontrado")
+
+    if not verify_password(form_data.password, user_data["hashed_password"]):
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Contraseña incorrecta")
+
+    token = create_access_token(
+        data={"sub": form_data.username},
+        expires_delta=timedelta(minutes=60)
+    )
+
+    return {
+        "access_token": token,
+        "token_type": "bearer",
+        "email": user_data["email"],
+        "role": user_data.get("role", "user"),
+        "name": user_data.get("name")
+    }
+
+# Login para el frontend Vue (usa JSON)
+@router.post("/frontend-login")
+def frontend_login(user: UserLogin):
     user_data = db["users"].find_one({"email": user.email})
     
     if not user_data:
@@ -31,7 +56,6 @@ def login(user: UserLogin):
         "role": user_data.get("role", "user"),
         "name": user_data.get("name")
     }
-
 @router.post("/register")
 def register(user: UserCreate):
     existing_user = db["users"].find_one({"email": user.email})
