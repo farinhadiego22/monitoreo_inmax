@@ -34,15 +34,17 @@ services:
       - keycloak
 
   frontend:
-    build: ./frontend
+    image: node:20-alpine
     container_name: frontend
-    ports:
-      - "5173:80"
-    depends_on:
-      - backend
-      - keycloak
+    working_dir: /app
     volumes:
       - ./frontend:/app
+    ports:
+      - "5173:5173"
+    command: sh -c "npm install && npm run dev -- --host"
+    depends_on:
+     - backend
+
 
 
 volumes:
