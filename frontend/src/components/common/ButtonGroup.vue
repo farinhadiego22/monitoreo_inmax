@@ -15,12 +15,13 @@
       size="medium"
       state="default"
       variant="primary"
+      @click="$emit('main-click')" 
     />
   </div>
 </template>
 
 <script>
-import Button from "./Button.vue";
+import Button from "../common/Button.vue";
 
 export default {
   name: "ButtonGroup",

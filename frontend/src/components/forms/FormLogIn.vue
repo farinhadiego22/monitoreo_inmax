@@ -19,6 +19,7 @@
       buttonLabel="Sign In"
       buttonStart="false"
       class="button-group-instance"
+      @main-click="emitLoginSuccess"
     />
     <TextLink
       class="design-component-instance-node"
@@ -29,8 +30,8 @@
 
 <script>
 import InputField from "./InputField.vue";
-import ButtonGroup from "./ButtonGroup.vue";
-import TextLink from "./TextLink.vue";
+import ButtonGroup from "../common/ButtonGroup.vue";
+import TextLink from "../common/TextLink.vue";
 
 export default {
   name: "FormLogIn",
@@ -53,6 +54,11 @@ export default {
       default: "Ingrese su contraseña",
     },
   },
+  methods: {
+    emitLoginSuccess() {
+      this.$emit('login-success');
+  }
+  }
 };
 </script>
 

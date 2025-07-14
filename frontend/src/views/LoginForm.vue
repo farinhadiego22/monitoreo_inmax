@@ -9,12 +9,16 @@
       :src="madeWithInsmind"
       alt="Logo Inmax"
     />
-    <FormLogIn class="form-log-in-instance" />
+    <FormLogIn
+      class="form-log-in-instance"
+      @login-success="goToHome"
+    />
+
   </div>
 </template>
 
 <script>
-import FormLogIn from "@/components/FormLogIn.vue";
+import FormLogIn from "@/components/forms/FormLogIn.vue";
 import Aperture from "@/components/icons/Aperture.vue";
 import madeWithInsmind from "@/assets/logoinmax.png";
 
@@ -27,9 +31,15 @@ export default {
   data() {
     return {
       madeWithInsmind
+    };
+  },
+  methods: {
+    goToHome() {
+      this.$router.push({ name: "home" });
     }
   }
 };
+
 </script>
 
 <style>
@@ -109,11 +119,11 @@ export default {
   align-items: stretch;
 }
 
-  .login-header {
-    height: 56px;
-    padding: 0 1rem;
-    font-size: 1rem;
-  }
+.login-header {
+  height: 56px;
+  padding: 0 1rem;
+  font-size: 1rem;
+}
 .login-logo {
   width: 320px;           /* Aumenta el tamaño */
   max-width: 98vw;
