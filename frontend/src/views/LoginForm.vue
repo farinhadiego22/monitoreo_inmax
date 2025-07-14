@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     goToHome() {
-      this.$router.push({ name: "home" });
+      this.$router.push({ name: "MenuPrincipal" });
     }
   }
 };
