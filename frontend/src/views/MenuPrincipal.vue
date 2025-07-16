@@ -7,14 +7,14 @@
           <Size48 class="aperture" />
         </div>
       </div>
-      <div class="overlap">
+      <router-link to="/plantillavue" class="overlap" style="text-decoration: none;">
         <img
           class="image"
           alt="Image"
           src="https://c.animaapp.com/OYuW8AoE/img/image-4@2x.png"
         />
         <div class="text-wrapper-3">Crear campaña</div>
-      </div>
+      </router-link>
       <div class="overlap-2">
         <img
           class="img"

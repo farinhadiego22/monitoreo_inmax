@@ -2,10 +2,13 @@
   <div class="plantilla-para-el" data-model-id="489:13498">
     <div class="div-2">
       <div class="group">
-        <div class="overlap-group">
-          <div class="text-wrapper-5">Web Avisadores</div>
-          <Aperture class="size-48-1" />
-        </div>
+        <!-- Solo esto, NO los bloques duplicados -->
+        <router-link to="/menu-principal" style="text-decoration: none;">
+          <div class="overlap-group" style="cursor:pointer;">
+            <div class="text-wrapper-5">Web Avisadores</div>
+            <Aperture class="size-48-1" />
+          </div>
+        </router-link>
       </div>
       <div class="overlap">
         <HeaderGenerico
@@ -34,6 +37,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import AvatarBlock from "../components/common/AvatarBlock.vue";
