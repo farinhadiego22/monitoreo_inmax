@@ -4,6 +4,8 @@ import CreacionDeCampana from '@/views/CreacionDeCampana.vue'
 import MenuPrincipal from '@/views/MenuPrincipal.vue'
 import PlantillaVue from '@/views/Plantilla.vue'
 import VentanaDePiezas from '@/views/VentanaDePiezas.vue'
+import InformeFinanciero from '@/views/InformeFinanciero.vue'
+import CrearDashboard from '@/views/CrearDashboard.vue' // <--- AGREGADO
 
 const routes = [
   {
@@ -30,6 +32,16 @@ const routes = [
     path: '/ventana-de-piezas',
     name: 'VentanaDePiezas',
     component: VentanaDePiezas
+  },
+  {
+    path: '/informe-financiero',
+    name: 'InformeFinanciero',
+    component: InformeFinanciero
+  },
+  {
+    path: '/crear-dashboard',             // <--- NUEVA RUTA
+    name: 'CrearDashboard',
+    component: CrearDashboard
   }
 ]
 

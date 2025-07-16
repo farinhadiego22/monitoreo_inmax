@@ -1,8 +1,8 @@
 <template>
-  <div class="ventana-de-piezas" data-model-id="488:23996">
-    <div class="overlap-group-wrapper">
+  <HeaderLayout>
+    <div class="ventana-de-piezas-container">
       <div class="overlap-group">
-        <div class="overlap">
+        <div class="icon-row">
           <Size48_1 class="image" />
         </div>
 
@@ -16,180 +16,208 @@
           <Size48 class="video" />
         </div>
 
-        <DateAndTime
-          class="date-and-time-compact-collapsed"
-          :hasTime="false"
-          month="Jun 10,"
-          type="date-and-time"
-          year="2024"
-        />
-        <div class="div">
-          <DateAndTime
-            class="date-and-time-compact-collapsed-instance"
-            :hasTime="false"
-            month="Jun 10,"
-            monthClassName="date-and-time-instance"
-            type="date-and-time"
-            year="2024"
-          />
-          <div class="text-wrapper-2">Start Date</div>
+        <div class="dates-section">
+          <div>
+            <input type="date" class="input-native" />
+            <span class="label">Fecha de inicio</span>
+          </div>
+          <div>
+            <input type="date" class="input-native" />
+            <span class="label">Fecha de término</span>
+          </div>
         </div>
 
-        <SelectField
-          class="select-field-instance"
-          label="Select campaign"
-          state="default"
-          value="Campaign"
-          valueType="default"
-        />
-        <div class="text-wrapper-3">End Date</div>
+        <select class="input-native select-field">
+          <option value="">Selecciona campaña</option>
+          <option value="A">Campaña A</option>
+          <option value="B">Campaña B</option>
+        </select>
+
+        <!-- Botón flotante, dentro del overlap-group -->
+        <router-link
+          :to="{ name: 'CreacionDeCampana' }"
+          class="fab-btn"
+        >
+          <span class="fab-icon">+</span>
+          <span class="fab-text">Crear campaña</span>
+        </router-link>
       </div>
     </div>
-  </div>
+  </HeaderLayout>
 </template>
 
 <script>
+import HeaderLayout from "@/components/layout/HeaderLayout.vue";
 import Size48 from "../components/icons/Size48.vue";
 import Size48_1 from "../components/icons/Size48_1.vue";
-import DateAndTime from "../components/common/DateAndTime.vue";
-import SelectField from "../components/common/SelectField.vue";
 
 export default {
   name: "VentanaDePiezas",
   components: {
+    HeaderLayout,
     Size48,
     Size48_1,
-    DateAndTime,
-    SelectField,
   },
 };
 </script>
 
-<style>
-.ventana-de-piezas {
-  background-color: #ffffff;
+<style scoped>
+.ventana-de-piezas-container {
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items: flex-start;
   width: 100%;
+  min-height: 70vh;
+  padding: 48px 0;
+  background: #fff;
 }
 
-.ventana-de-piezas .overlap-group-wrapper {
-  background-color: #ffffff;
-  height: 1492px;
-  width: 1440px;
-}
-
-.ventana-de-piezas .overlap-group {
-  background-image: url(https://c.animaapp.com/DdGYLEUA/img/rectangle-30.svg);
-  background-size: 100% 100%;
-  height: 750px;
-  left: 310px;
+.overlap-group {
+  background: url('https://c.animaapp.com/DdGYLEUA/img/rectangle-30.svg') no-repeat center/cover;
+  width: 100%;
+  max-width: 900px;
+  min-height: 600px;
+  padding: 40px 32px;
+  box-shadow: 0 4px 24px #0001;
+  border-radius: 28px;
   position: relative;
-  top: 251px;
-  width: 994px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.ventana-de-piezas .overlap {
-  background-image: url(https://c.animaapp.com/DdGYLEUA/img/rectangle-33.svg);
-  background-size: 100% 100%;
-  height: 162px;
-  left: 667px;
+/* Botón flotante */
+.fab-btn {
   position: absolute;
-  top: 403px;
-  width: 301px;
+  bottom: 38px;
+  right: 38px;
+  background: linear-gradient(90deg, #2186eb, #27c2e9 90%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 4px 18px #2186eb22;
+  padding: 16px 28px;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 10;
+  transition: transform 0.14s, box-shadow 0.14s;
+}
+.fab-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 6px 26px #27c2e966;
+}
+.fab-icon {
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 1;
+  margin-right: 3px;
+}
+.fab-text {
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.ventana-de-piezas .image {
-  height: 48px !important;
-  left: 121px !important;
-  position: absolute !important;
-  top: 43px !important;
-  width: 48px !important;
+.icon-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
 }
 
-.ventana-de-piezas .rectangle {
-  height: 160px;
-  left: 667px;
+.image {
+  width: 48px;
+  height: 48px;
+}
+
+.rectangle {
+  width: 240px;
+  height: 80px;
+  object-fit: cover;
   mix-blend-mode: hard-light;
   position: absolute;
-  top: 235px;
-  width: 301px;
+  right: 20px;
+  top: 60px;
+  border-radius: 18px;
 }
 
-.ventana-de-piezas .video-wrapper {
-  background-image: url(https://c.animaapp.com/DdGYLEUA/img/rectangle-32.svg);
-  background-size: 100% 100%;
-  height: 334px;
-  left: 42px;
-  position: absolute;
-  top: 231px;
-  width: 621px;
+.video-wrapper {
+  width: 250px;
+  height: 120px;
+  background: url('https://c.animaapp.com/DdGYLEUA/img/rectangle-32.svg') no-repeat center/cover;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 24px 0;
 }
 
-.ventana-de-piezas .video {
-  height: 48px !important;
-  left: 275px !important;
-  position: absolute !important;
-  top: 133px !important;
-  width: 48px !important;
+.video {
+  width: 48px;
+  height: 48px;
 }
 
-.ventana-de-piezas .date-and-time-compact-collapsed {
-  left: 483px !important;
-  position: absolute !important;
-  top: 119px !important;
+.dates-section {
+  display: flex;
+  gap: 36px;
+  align-items: center;
 }
 
-.ventana-de-piezas .div {
-  height: 69px;
-  left: 317px;
-  position: absolute;
-  top: 83px;
-  width: 166px;
+.input-native {
+  width: 100%;
+  height: 44px;
+  padding: 8px 14px;
+  border: 1.2px solid #b9b9b9;
+  border-radius: 9px;
+  font-size: 1rem;
 }
 
-.ventana-de-piezas .date-and-time-instance {
-  text-shadow: 0px 4px 4px #00000040 !important;
+.label {
+  display: block;
+  font-size: 1rem;
+  color: #444;
+  margin-top: 4px;
+  font-weight: 600;
 }
 
-.ventana-de-piezas .date-and-time-compact-collapsed-instance {
-  left: 0 !important;
-  position: absolute !important;
-  top: 35px !important;
+.select-field {
+  margin-top: 20px;
+  width: 320px;
 }
 
-.ventana-de-piezas .text-wrapper-2 {
-  color: var(--color-text-default-default);
-  font-family: var(--body-base-font-family);
-  font-size: var(--body-base-font-size);
-  font-style: var(--body-base-font-style);
-  font-weight: var(--body-base-font-weight);
-  left: 0;
-  letter-spacing: var(--body-base-letter-spacing);
-  line-height: var(--body-base-line-height);
-  position: absolute;
-  top: 0;
-  width: 166px;
+@media (max-width: 1024px) {
+  .overlap-group {
+    max-width: 98vw;
+    padding: 16px 4vw;
+  }
 }
-
-.ventana-de-piezas .select-field-instance {
-  left: 22px !important;
-  position: absolute !important;
-  top: 80px !important;
-}
-
-.ventana-de-piezas .text-wrapper-3 {
-  color: #000000;
-  font-family: var(--body-base-font-family);
-  font-size: var(--body-base-font-size);
-  font-style: var(--body-base-font-style);
-  font-weight: var(--body-base-font-weight);
-  left: 483px;
-  letter-spacing: var(--body-base-letter-spacing);
-  line-height: var(--body-base-line-height);
-  position: absolute;
-  top: 85px;
-  width: 204px;
+@media (max-width: 600px) {
+  .overlap-group {
+    min-height: 300px;
+    border-radius: 8px;
+    padding: 12px 1vw;
+    gap: 14px;
+  }
+  .rectangle {
+    width: 120px;
+    height: 40px;
+    right: 8px;
+    top: 24px;
+  }
+  .select-field {
+    width: 100%;
+  }
+  .fab-btn {
+    bottom: 12px;
+    right: 12px;
+    padding: 12px 18px;
+    font-size: 1rem;
+  }
+  .fab-icon {
+    font-size: 1.2rem;
+  }
 }
 </style>

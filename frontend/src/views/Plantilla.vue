@@ -1,43 +1,39 @@
 <template>
   <div class="plantilla-para-el" data-model-id="489:13498">
     <div class="div-2">
+      <!-- Header integrado dentro del bloque celeste -->
       <div class="group">
-        <!-- Solo esto, NO los bloques duplicados -->
-        <router-link to="/menu-principal" style="text-decoration: none;">
-          <div class="overlap-group" style="cursor:pointer;">
-            <div class="text-wrapper-5">Web Avisadores</div>
-            <Aperture class="size-48-1" />
-          </div>
-        </router-link>
+        <div class="overlap-group">
+          
+          <Header
+            class="header-instance"
+            :hasBlock="true"
+            navigationPillLabel="Home"
+            navigationPillLabel1="Campaigns"
+            navigationPillLabel2="Reports"
+            navigationPillLabel3="Settings"
+            navigationPillLabel4="Profile"
+            navigationPillLabel5="Notifications"
+            navigationPillTitleClassName="design-component-instance-node"
+            navigationPillTitleClassNameOverride="design-component-instance-node"
+            platform="desktop"
+            state="default"
+            :visible="false"
+          />
+        </div>
       </div>
-      <div class="overlap">
-        <HeaderGenerico
-          className="header-instance"
-          :navigationPills="[
-            'Home',
-            'Campaigns',
-            'Reports',
-            'Settings',
-            'Profile',
-            'Notifications'
-          ]"
-          navigationPillTitleClassName="header-2"
-          :visible="true"
-          @navigate="onNavigate"
-        />
 
-        <AvatarBlock
-          class="avatar-block-instance"
-          description="Description"
-          title="Title"
-        />
-      </div>
+      <!-- El resto de tus componentes -->
+      <AvatarBlock
+        class="avatar-block-instance"
+        description="Description"
+        title="Title"
+      />
       <Size48 class="size-48" />
       <Menu class="menu-instance" />
     </div>
   </div>
 </template>
-
 
 <script>
 import AvatarBlock from "../components/common/AvatarBlock.vue";
@@ -162,4 +158,25 @@ export default {
   top: 267px !important;
   width: 303px !important;
 }
+.overlap-group {
+  background-color: #a9f2f2; /* O el color celeste que usas */
+  background-size: 100% 100%;
+  min-height: 123px; /* O el alto de tu header */
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-shadow: 0px 4px 4px #00000040;
+}
+
+.header-instance {
+  background-color: transparent !important;
+  padding: 0 !important;
+  width: 100% !important;
+  min-height: 123px;
+}
+
+.header-instance .navigation-pill-list {
+  padding-right: 40px;
+}
+
 </style>

@@ -1,15 +1,6 @@
 <template>
   <div :class="['header', className]">
-    <div v-if="hasBlock" class="block">
-      <div class="figma">
-        <img
-          class="icon"
-          alt="Icon"
-          src="https://c.animaapp.com/DL5zdupI/img/icon.svg"
-        />
-      </div>
-    </div>
-
+    
     <div class="navigation-pill-list">
       <NavigationPill
         class="navigation-pill-instance"
@@ -107,17 +98,20 @@ export default defineComponent({
 
 <style>
 .header {
+  box-shadow: none !important;
+  border-bottom: none !important;
   align-items: center;
-  background-color: var(--color-background-default-default);
+  background-color: transparent !important;  /* Sobreescribe fondo */
   border-bottom-style: solid;
   border-bottom-width: 1px;
   border-color: var(--color-border-default-default);
   display: flex;
   flex-wrap: wrap;
   gap: var(--size-space-600);
-  padding: var(--size-space-800);
+  padding: 0 !important;
   position: relative;
-  width: var(--responsive-device-width);
+  width: 100% !important;
+  min-height: 123px; /* O el alto del header celeste */
 }
 
 .header .block {
