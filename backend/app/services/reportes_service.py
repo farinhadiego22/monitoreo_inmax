@@ -1,7 +1,7 @@
 from datetime import date
 from typing import List
 
-# Datos mockeados por ahora
+# Datos mockeados de prueba
 def obtener_top_usuarios_por_pais(top_n: int, fecha_inicio: date, fecha_fin: date):
     return [
         {"pais": "Chile", "usuarios": 1200},

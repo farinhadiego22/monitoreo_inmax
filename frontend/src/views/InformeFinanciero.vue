@@ -7,6 +7,8 @@
           v-for="(campaign, idx) in campaigns"
           :key="idx"
           class="campaign-card"
+          @click="verDetalle(campaign)"
+          style="cursor:pointer"
         >
           <div class="card-header">
             <span class="card-title">{{ campaign.name }}</span>
@@ -54,6 +56,7 @@ export default {
     return {
       campaigns: [
         {
+          slug: "campana-invierno",              // <--- Agregado
           name: "Campaña Invierno",
           status: "Activa",
           statusClass: "status-activa",
@@ -66,6 +69,7 @@ export default {
           end: "07/08/24"
         },
         {
+          slug: "verano-2024",                   // <--- Agregado
           name: "Verano 2024",
           status: "Activa",
           statusClass: "status-activa",
@@ -78,6 +82,7 @@ export default {
           end: "29/02/24"
         },
         {
+          slug: "lanzamiento-web",               // <--- Agregado
           name: "Lanzamiento Web",
           status: "Activa",
           statusClass: "status-activa",
@@ -91,6 +96,15 @@ export default {
         }
       ]
     };
+  },
+
+  methods: {
+    verDetalle(campaign) {
+      this.$router.push({
+        name: "DetalleCampaña",
+        params: { slug: campaign.slug }    // <--- AHORA USAS slug
+      });
+    }
   }
 };
 </script>

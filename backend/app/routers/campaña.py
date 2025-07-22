@@ -5,6 +5,7 @@ from typing import List, Optional
 from app.schemas.campaña import CampañaCreate, CampañaOut
 from app.models.campaña import Campaña
 from app.db.mongo import db
+from app.services import service_asignacion
 
 from fastapi import APIRouter, Query
 from app.services.campaña_service import (
@@ -94,7 +95,11 @@ from app.services.campaña_service import (
     obtener_mapa_interactivo,
     obtener_alertas_de_campaña
 )
-
+@router.post("/campañas/simular")
+def simular_campaña(campaña: dict, usuarios: list):
+    # Esto normalmente recibirá schemas, aquí simplificado
+    resultado = service_asignacion.asignar_campaña_a_usuarios(campaña, usuarios)
+    return resultado  # Esto lo consume el frontend para graficar
 
 @router.get("/geolocalizacion")
 def obtener_geolocalizacion(id_campaña: str = None, region: str = None, fecha_inicio: str = None, fecha_fin: str = None):

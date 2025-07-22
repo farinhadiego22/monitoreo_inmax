@@ -6,6 +6,7 @@ import PlantillaVue from '@/views/Plantilla.vue'
 import VentanaDePiezas from '@/views/VentanaDePiezas.vue'
 import InformeFinanciero from '@/views/InformeFinanciero.vue'
 import CrearDashboard from '@/views/CrearDashboard.vue' // <--- AGREGADO
+import DetalleCampaña from '@/views/DetalleCampaña.vue'
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: '/crear-dashboard',             // <--- NUEVA RUTA
     name: 'CrearDashboard',
     component: CrearDashboard
+  },
+  {
+    path: '/detalle-campaña/:slug',       // <--- CAMBIA :nombre por :slug
+    name: 'DetalleCampaña',
+    component: DetalleCampaña
   }
 ]
 
